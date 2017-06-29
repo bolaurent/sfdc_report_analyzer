@@ -95,7 +95,7 @@ class SFDC(simple_salesforce.Salesforce):
         if not where.lower().startswith('where '):
             where = 'where ' + where
 
-        result = self.query_all("select {} from report {} "\
+        result = self.query_all("select {} from report {} Order By FolderName, Name"\
                                      .format(','.join(self.report_fields), where))
         for record in result['records']:
             yield record

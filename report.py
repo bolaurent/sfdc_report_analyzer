@@ -1,6 +1,5 @@
-import pdb
+import re
 from dateutil.parser import parse
-import simple_salesforce
 
 from reify import reify
 
@@ -10,7 +9,7 @@ import config
 def simplify_dates(strings):
     """ each string in strings arg that appears to be a datetime will be converted to a date
     """
-    return [parse(s).date() if s and s.startswith('201') else s for s in strings]
+    return [parse(s).date() if s and re.search(r'^\d{4}', s) else s for s in strings]
 
 def get(dict, keys):
     """ return list of dict values for given keys

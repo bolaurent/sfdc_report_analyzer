@@ -10,7 +10,10 @@ DEFAULT_STALE_DATE = "{}-01-01".format(datetime.date.today().year-1)
 
 ARCHIVED_FOLDERNAME_PATTERNS = [
     '%dormant%',
-    '%archived%'
+    '%archived%',
+    'zzz-%',
+    'ZZZ-%',
+    'Private Reports'
 ]
 
 WHERE_EXCLUDE_FOLDERS = ' and '.join(["(not foldername like '{}')".format(folder) for folder in ARCHIVED_FOLDERNAME_PATTERNS])
