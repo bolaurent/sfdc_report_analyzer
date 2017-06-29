@@ -1,4 +1,5 @@
 import pdb
+from dateutil.parser import parse
 import simple_salesforce
 
 from reify import reify
@@ -47,15 +48,25 @@ class Report():
 
             lazy loaded, so we don't waste time calling out to sfdc if we don't need this
         """
-        return self.sfdc.describeReport(self.queryResult['Id'])
+        return self.sfdc.describe_report(self.queryResult['Id'])
 
     def report_id(self):
+        """ return Salesforce ID of the report
+        """
         return self.queryResult['Id']
 
     def report_url(self):
+        """ Return url that displays the report in UI
+        """
         return 'https://{instance}/'.format(instance=self.sfdc.sf_instance) + self.report_id()
 
-    def dump(self, note):
+    def move(self, folder_id):
+        payload = {
+            "reportMetadata" : {"folderId":folder_id}
+        }
+        self.sfdc.update_report(self.report_id(), payload)
+
+    def dump(self, note=''):
         """ return one line, for output to tab-separated-values file
         """
 
