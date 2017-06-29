@@ -6,6 +6,15 @@ import simple_salesforce
 import config
 
 class SFDC(simple_salesforce.Salesforce):
+    """ Adds methods to simple_salesforce:
+
+        def describe_report(): get back detailed report metadata (definition of report)
+
+        def update_report(): modify report definition
+
+        def reports(): a generator, yielding report records
+
+    """
 
     # fields to be selected
     report_fields = [

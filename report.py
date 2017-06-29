@@ -36,6 +36,15 @@ def quotify(string):
 
 class Report():
     """ An instance of a report, defined in Salesforce
+
+        methods:
+
+        describe(): return report metadata
+        report_id(): return report Id
+        report_url(): return report url
+        move(): move report to a given folder
+        dump(): return a line of text, suitable for output to csv file
+
     """
     def __init__(self, sfdc, queryResult):
         self.sfdc = sfdc

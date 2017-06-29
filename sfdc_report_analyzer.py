@@ -26,6 +26,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 
 class MyReport(Report):
+    """ adds methods to Report class
+        def is_stale(): determine whether report is_stale
+        def is_relevant(): is report affected by restatement process
+    """
     stale_date = config.DEFAULT_STALE_DATE
 
     def is_stale(self):
